@@ -10,7 +10,6 @@ import java.io.IOException;
 
 public class MainApp extends Application {
     private static Scene scene;
-    public static final int HEIGHT_OFFSET = 44;
 
     public static void main(String[] args) {
         launch();
@@ -25,9 +24,9 @@ public class MainApp extends Application {
         return fxmlLoader.load();
     }
 
-    public static void changeView(String url, int width, int height) throws IOException {
+    public static void changeView(String url) throws IOException {
         Stage currentStage = (Stage) scene.getWindow();
-        configureStage(currentStage, width, height);
+        configureStage(currentStage, 1024, 640);
         MainApp.setRoot(url);
     }
 
@@ -39,7 +38,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("login-view.fxml"), 600, 400);
+        scene = new Scene(loadFXML("login-view.fxml"), 1024, 640);
         stage.setTitle("Gestión de Proyecto Guiado y Experiencia Recepcional");
         stage.setScene(scene);
         stage.show();
