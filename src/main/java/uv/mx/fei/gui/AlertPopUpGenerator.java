@@ -30,12 +30,12 @@ public class AlertPopUpGenerator {
         customMessage.showAndWait();
     }
     
-    public static Optional<ButtonType> showConfirmationMessage(Alert.AlertType AlertType, String header, String content) {
-        Alert customMessage = new Alert(AlertType);
+    public static boolean showConfirmationMessage(String header, String content) {
+        Alert customMessage = new Alert(Alert.AlertType.CONFIRMATION);
         customMessage.setHeaderText(header);
         customMessage.setContentText(content);
-
-        Optional<ButtonType> buttonPressed = customMessage.showAndWait();
-        return buttonPressed;
+        
+        Optional<ButtonType> choice = customMessage.showAndWait();
+        return choice.isPresent() && choice.get() == ButtonType.OK;
     }
 }

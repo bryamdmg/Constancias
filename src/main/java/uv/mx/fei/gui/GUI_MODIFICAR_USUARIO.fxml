@@ -33,7 +33,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <TextField layoutX="294.0" layoutY="164.0" prefHeight="35.0" prefWidth="503.0" promptText="Ej: Erika Meneses Rico">
+            <TextField fx:id="nameTextField" layoutX="294.0" layoutY="164.0" prefHeight="35.0" prefWidth="503.0" promptText="Ej: Erika Meneses Rico">
                <font>
                   <Font size="16.0" />
                </font>
@@ -58,10 +58,10 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <DatePicker layoutX="294.0" layoutY="219.0" prefHeight="35.0" prefWidth="503.0" promptText="Ej:14/02/2013" />
-            <DatePicker layoutX="294.0" layoutY="273.0" prefHeight="35.0" prefWidth="503.0" promptText="Ej:14/02/2013" />
-            <DatePicker layoutX="294.0" layoutY="390.0" prefHeight="35.0" prefWidth="503.0" promptText="Ej:14/02/2013" />
-            <ComboBox layoutX="294.0" layoutY="333.0" prefHeight="35.0" prefWidth="503.0" promptText="--Seleccione su grado académico--" />
+            <DatePicker fx:id="joinDatePicker" layoutX="294.0" layoutY="219.0" prefHeight="35.0" prefWidth="503.0" promptText="Ej:14/02/2013" />
+            <DatePicker fx:id="expirationDatePicker" layoutX="294.0" layoutY="273.0" prefHeight="35.0" prefWidth="503.0" promptText="Ej:14/02/2013" />
+            <DatePicker fx:id="birthDatePicker" layoutX="294.0" layoutY="390.0" prefHeight="35.0" prefWidth="503.0" promptText="Ej:14/02/2013" />
+            <ComboBox fx:id="academicDegreeComboBox" layoutX="294.0" layoutY="333.0" prefHeight="35.0" prefWidth="503.0" promptText="--Seleccione su grado académico--" />
             <Button layoutX="392.0" layoutY="462.0" mnemonicParsing="false" onAction="#cancelChangesButtonClick" text="Cancelar">
                <font>
                   <Font size="20.0" />
