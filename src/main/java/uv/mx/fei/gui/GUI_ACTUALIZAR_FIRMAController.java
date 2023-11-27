@@ -1,16 +1,14 @@
 package uv.mx.fei.gui;
 
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 
-public class GUI_ACTUALIZAR_FIRMAController implements Initializable {
+public class GUI_ACTUALIZAR_FIRMAController{
 
     @FXML
     private PasswordField oldSignatureField;
@@ -21,8 +19,8 @@ public class GUI_ACTUALIZAR_FIRMAController implements Initializable {
     @FXML
     private PasswordField adminPasswordField;
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    @FXML
+    public void initialize() {
         
     }
 
@@ -37,6 +35,6 @@ public class GUI_ACTUALIZAR_FIRMAController implements Initializable {
 
     @FXML
     private void saveChangesButtonClick(ActionEvent event) {
+        
     }
-    
 }
