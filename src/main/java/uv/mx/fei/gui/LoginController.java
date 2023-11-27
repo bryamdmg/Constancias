@@ -20,7 +20,7 @@ public class LoginController {
 
     @FXML
     private void onActionButtonContinue() throws IOException {
-
+        MainApp.changeView("GUI_MODIFICAR_USUARIO.fxml");
     }
 
     private void continueLogin(boolean isLoginValid) throws SQLException, IOException {

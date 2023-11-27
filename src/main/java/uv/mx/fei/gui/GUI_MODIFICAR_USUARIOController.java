@@ -22,7 +22,7 @@ public class GUI_MODIFICAR_USUARIOController implements Initializable {
     }    
     
     @FXML
-    private void cancelButtonClick(ActionEvent event) {
+    private void cancelChangesButtonClick(ActionEvent event) {
         
     }
 

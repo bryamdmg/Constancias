@@ -6,6 +6,9 @@ module uv.mx.fei.constancias {
     requires com.dlsc.formsfx;
     requires java.sql;
     requires java.base;
+    requires kernel;
+    requires layout;
+    requires io;
 
     opens uv.mx.fei.gui to javafx.fxml;
     exports uv.mx.fei.gui;
