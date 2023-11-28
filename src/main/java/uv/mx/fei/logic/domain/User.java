@@ -5,6 +5,7 @@ import java.sql.Date;
 public class User {
     private int staffNumber;
     private String name;
+    private String userType;
     private Date joinDate;
     private Date expirationDate;
     private String academicDegree;
@@ -24,6 +25,14 @@ public class User {
     
     public String getName(){
         return name;
+    }
+    
+    public void setUserType(String u){
+        userType = u;
+    }
+    
+    public String getUserType(){
+        return userType;
     }
     
     public void setJoinDate(Date jd){
