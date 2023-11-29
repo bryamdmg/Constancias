@@ -1,6 +1,8 @@
 package uv.mx.fei.logic;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import uv.mx.fei.dataaccess.DataBaseManager;
 import uv.mx.fei.logic.domain.User;
@@ -12,9 +14,9 @@ public class UsersDAO {
         dataBaseManager = new DataBaseManager();
     }
     
-    public int modifyUser(User user) throws SQLException{
+    public int modifyProfessor(User user) throws SQLException{
         int result = 0;
-        String query = "UPDATE TABLE Profesores SET nombre = ?, fechaIngreso = ?, fechaExpiración = ?, gradoAcadémico= ?, fechaNacimiento = ? WHERE NumPersonal IN(?)";
+        String query = "UPDATE TABLE Usuarios SET nombre = ?, fechaIngreso = ?, fechaExpiración = ?, gradoAcadémico= ?, fechaNacimiento = ? WHERE NumPersonal IN(?)";
         
         try{
             PreparedStatement statement = dataBaseManager.getConnection().prepareStatement(query);
@@ -34,5 +36,36 @@ public class UsersDAO {
         }
         
         return result;
+    }
+
+    public int getUserValidation(String username, String password) throws SQLException {
+        int result = 0;
+        String query = "SELECT 1 FROM Usuarios WHERE nombreUsuario=(?) AND contrasena=(SHA2(?, 256))";
+
+        PreparedStatement preparedStatement = dataBaseManager.getConnection().prepareStatement(query);
+        preparedStatement.setString(1, username);
+        preparedStatement.setString(2, password);
+        result = preparedStatement.executeUpdate();
+        dataBaseManager.closeConnection();
+
+        return result;
+    }
+
+
+    public String getAccessAccountTypeByUsername(String username) throws SQLException {
+
+        String query = "SELECT tipoUsuario FROM Usuarios WHERE nombreUsuario=(?)";
+
+        PreparedStatement preparedStatement = dataBaseManager.getConnection().prepareStatement(query);
+        preparedStatement.setString(1, username);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        dataBaseManager.closeConnection();
+
+        String type = "";
+        while (resultSet.next()) {
+            type = resultSet.getString("tipoUsuario");
+        }
+
+        return type;
     }
 }

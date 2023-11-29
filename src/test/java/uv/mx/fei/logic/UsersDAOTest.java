@@ -71,7 +71,7 @@ public class UsersDAOTest {
         user.setAcademicDegree("Maestría");
         user.setName("Erika Meneses Rico");
         
-        assertTrue(userDAO.modifyUser(user) > 0);
+        assertTrue(userDAO.modifyProfessor(user) > 0);
     }
     
     @Test
