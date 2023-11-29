@@ -27,6 +27,6 @@ public class DataBaseManager {
     }
 
     private void connect() throws SQLException{
-        connection = DriverManager.getConnection("Constancias", "usuarioConstancias", "uvConstancias2023");
+        connection = DriverManager.getConnection("jdbc:mariadb://localhost/Constancias", "usuarioConstancias", "uvConstancias2023");
     }
 }

@@ -1,6 +1,5 @@
 package uv.mx.fei.logic;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -38,14 +37,15 @@ public class UsersDAO {
         return result;
     }
 
-    public int getUserValidation(String username, String password) throws SQLException {
-        int result = 0;
+    public boolean isUserValid(String username, String password) throws SQLException {
+        boolean result;
         String query = "SELECT 1 FROM Usuarios WHERE nombreUsuario=(?) AND contrasena=(SHA2(?, 256))";
 
         PreparedStatement preparedStatement = dataBaseManager.getConnection().prepareStatement(query);
         preparedStatement.setString(1, username);
         preparedStatement.setString(2, password);
-        result = preparedStatement.executeUpdate();
+        ResultSet resultSet = preparedStatement.executeQuery();
+        result = resultSet.next();
         dataBaseManager.closeConnection();
 
         return result;

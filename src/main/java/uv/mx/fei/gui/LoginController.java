@@ -23,14 +23,14 @@ public class LoginController {
     private void onActionButtonContinue() throws IOException {
         UsersDAO userDAO = new UsersDAO();
         try {
-            continueLogin(userDAO.getUserValidation(textFieldUser.getText(), textFieldPassword.getText()));
+            continueLogin(userDAO.isUserValid(textFieldUser.getText(), textFieldPassword.getText()));
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         }
     }
 
-    private void continueLogin(int validation) throws SQLException, IOException {
-        if (validation == 1) {
+    private void continueLogin(boolean validation) throws SQLException, IOException {
+        if (validation) {
             redirectToWindow();
         } else {
             AlertPopUpGenerator.showMissingFilesMessage();
@@ -44,9 +44,9 @@ public class LoginController {
         String username = textFieldUser.getText();
 
         switch (userType) {
-            case USER_ADMIN -> MainApp.changeView("usermanagement-view.fxml");
-            case USER_PROFESSOR -> MainApp.changeView("-view.fxml");
-            case USER_ADMINISTRATOR -> MainApp.changeView("-view.fxml");
+            case USER_ADMIN -> MainApp.changeView("GUI_ACTUALIZAR_FIRMA.fxml");
+            case USER_PROFESSOR -> MainApp.changeView("GUI_MODIFICAR_USUARIO.fxml");
+            case USER_ADMINISTRATOR -> MainApp.changeView("usermanagement-view.fxml");
         }
     }
 }
