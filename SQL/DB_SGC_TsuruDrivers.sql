@@ -6,6 +6,8 @@ USE Constancias;
 CREATE TABLE Usuarios(
     Id_usuario INT NOT NULL AUTO_INCREMENT,
     PRIMARY KEY (Id_usuario),
+    numPersonal INT,
+    UNIQUE (numPersonal),
     nombreUsuario NVARCHAR(28) NOT NULL,
     UNIQUE (nombreUsuario),
     contrasena NVARCHAR(64) NOT NULL,

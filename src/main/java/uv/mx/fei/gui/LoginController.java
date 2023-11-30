@@ -2,6 +2,7 @@ package uv.mx.fei.gui;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import uv.mx.fei.logic.ProfessorDAO;
 import uv.mx.fei.logic.UsersDAO;
 import uv.mx.fei.logic.domain.SessionDetails;
 
@@ -45,7 +46,12 @@ public class LoginController {
 
         switch (userType) {
             case USER_ADMIN -> MainApp.changeView("GUI_ACTUALIZAR_FIRMA.fxml");
-            case USER_PROFESSOR -> MainApp.changeView("GUI_MODIFICAR_USUARIO.fxml");
+            case USER_PROFESSOR -> {
+                ProfessorDAO professorDAO = new ProfessorDAO();
+                int professorId = professorDAO.getProfessorIdByUsername(username);
+                sessionDetails = SessionDetails.getInstance(username, userType, professorId);
+                MainApp.changeView("generatecertificates-view.fxml");
+            }
             case USER_ADMINISTRATOR -> MainApp.changeView("usermanagement-view.fxml");
         }
     }
