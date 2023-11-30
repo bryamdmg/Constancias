@@ -9,6 +9,7 @@ module uv.mx.fei.constancias {
     requires kernel;
     requires layout;
     requires io;
+    requires itextpdf;
 
     opens uv.mx.fei.logic.domain to javafx.fxml;
     opens uv.mx.fei.gui to javafx.fxml;
