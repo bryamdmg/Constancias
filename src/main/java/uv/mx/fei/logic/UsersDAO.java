@@ -1,8 +1,12 @@
 package uv.mx.fei.logic;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import uv.mx.fei.dataaccess.DataBaseManager;
 import uv.mx.fei.logic.domain.User;
 
@@ -67,5 +71,24 @@ public class UsersDAO {
         }
 
         return type;
+    }
+
+    public List<User> getUsersList() throws SQLException {
+        String query = "SELECT Id_usuario, nombreUsuario, tipoUsuario FROM Usuarios";
+
+        PreparedStatement preparedStatement = dataBaseManager.getConnection().prepareStatement(query);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        dataBaseManager.closeConnection();
+
+        List<User> accessAccountList = new ArrayList<>();
+        while(resultSet.next()) {
+            User user = new User();
+            user.setId(resultSet.getInt("Id_usuario"));
+            user.setUsername(resultSet.getString("nombreUsuario"));
+            user.setType(resultSet.getString("tipoUsuario"));
+            accessAccountList.add(user);
+        }
+
+        return accessAccountList;
     }
 }

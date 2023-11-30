@@ -10,6 +10,8 @@ module uv.mx.fei.constancias {
     requires layout;
     requires io;
 
+    opens uv.mx.fei.logic.domain to javafx.fxml;
     opens uv.mx.fei.gui to javafx.fxml;
     exports uv.mx.fei.gui;
+    exports uv.mx.fei.logic.domain;
 }
