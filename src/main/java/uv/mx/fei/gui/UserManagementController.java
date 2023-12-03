@@ -15,8 +15,6 @@ public class UserManagementController {
 
     @FXML
     private TableView<User> tableViewUsers;
-    private static String username;
-    private static String userType;
 
     @FXML
     private void initialize() {
