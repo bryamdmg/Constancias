@@ -1,5 +1,6 @@
 package uv.mx.fei.gui;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -35,7 +36,7 @@ public class GUI_AGREGAR_USUARIOController{
     }
     
     @FXML
-    private void saveChangesButtonClick(ActionEvent event) {
+    private void saveChangesButtonClick(ActionEvent event) throws IOException {
         if(!areFieldsBlank()){
             if(areDatesValid()){
                 User user = new User();
@@ -45,7 +46,7 @@ public class GUI_AGREGAR_USUARIOController{
                 user.setJoinDate(Date.valueOf(joinDatePicker.getValue()));
                 user.setExpirationDate(Date.valueOf(expirationDatePicker.getValue()));
                 user.setBirthDate(Date.valueOf(birthDatePicker.getValue()));
-                user.setUserType(userTypeComboBox.getValue());
+                user.setType(userTypeComboBox.getValue());
                 user.setAcademicDegree(academicDegreeComboBox.getValue());
 
                 try{
@@ -54,7 +55,7 @@ public class GUI_AGREGAR_USUARIOController{
                     if(userDAO.addUser(user) > 0){
                         AlertPopUpGenerator.showCustomMessage(Alert.AlertType.INFORMATION, "Operación exitosa", "El nuevo usuario ha sido agregado exitosamente");
                         
-                        //TODO Send to User management screen
+                        MainApp.changeView("usermanagement-view.fxml");
                     }
                 }catch(SQLException exception){
                     AlertPopUpGenerator.showCustomMessage(Alert.AlertType.ERROR, "Error", "Error de conexión con la base de datosHubo un error al conectar con la base de datos, por favor inténtelo de nuevo más tarde");
@@ -82,7 +83,7 @@ public class GUI_AGREGAR_USUARIOController{
         joinDatePicker.setValue(user.getJoinDate().toLocalDate());
         expirationDatePicker.setValue(user.getExpirationDate().toLocalDate());
         birthDatePicker.setValue(user.getBirthDate().toLocalDate());
-        userTypeComboBox.setValue(user.getUserType());
+        userTypeComboBox.setValue(user.getType());
         academicDegreeComboBox.setValue(user.getAcademicDegree());
     }
     

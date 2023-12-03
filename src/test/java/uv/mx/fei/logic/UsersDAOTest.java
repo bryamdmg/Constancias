@@ -98,7 +98,7 @@ public class UsersDAOTest {
         newUser.setExpirationDate(Date.valueOf(LocalDate.of(2030, Month.JANUARY, 5)));
         newUser.setJoinDate(Date.valueOf(LocalDate.of(2000, Month.FEBRUARY, 10)));
         newUser.setName("Juan Carlos Pérez Arriaga");
-        newUser.setUserType("Profesor");
+        newUser.setType("Profesor");
         
         assertTrue(userDAO.addUser(newUser) > 0);
     }
@@ -107,6 +107,6 @@ public class UsersDAOTest {
     public void testGetUserList() throws Exception {
         UsersDAO userDAO = new UsersDAO();
         
-        assertTrue(!userDAO.getUserList().isEmpty());
+        assertTrue(!userDAO.getUsersList().isEmpty());
     }
 }

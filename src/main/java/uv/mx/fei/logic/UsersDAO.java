@@ -16,7 +16,45 @@ public class UsersDAO {
     public UsersDAO(){
         dataBaseManager = new DataBaseManager();
     }
-    
+
+    public int addUser(User user) throws SQLException{
+        int result = 0;
+        String query = "INSERT INTO Usuarios(NumPersonal, nombre, tipoUsuario, fechaIngreso, fechaExpiración, gradoAcadémico, fechaNacimiento) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement statement = dataBaseManager.getConnection().prepareStatement(query);
+
+        statement.setInt(1, user.getStaffNumber());
+        statement.setString(2, user.getName());
+        statement.setString(3, user.getType());
+        statement.setDate(4, user.getJoinDate());
+        statement.setDate(5, user.getExpirationDate());
+        statement.setString(6, user.getAcademicDegree());
+        statement.setDate(7, user.getBirthDate());
+
+        result = statement.executeUpdate();
+        dataBaseManager.closeConnection();
+
+        return result;
+    }
+
+    public int modifyUser(User user) throws SQLException{
+        int result = 0;
+        String query = "UPDATE TABLE Usuarios SET nombre = ?, tipoUsuario = ?, fechaIngreso = ?, fechaExpiración = ?, gradoAcadémico= ?, fechaNacimiento = ? WHERE NumPersonal IN(?)";
+        PreparedStatement statement = dataBaseManager.getConnection().prepareStatement(query);
+
+        statement.setString(1, user.getName());
+        statement.setString(2, user.getType());
+        statement.setDate(3, user.getJoinDate());
+        statement.setDate(4, user.getExpirationDate());
+        statement.setString(5, user.getAcademicDegree());
+        statement.setDate(6, user.getBirthDate());
+        statement.setInt(7, user.getStaffNumber());
+
+        result = statement.executeUpdate();
+        dataBaseManager.closeConnection();
+
+        return result;
+    }
+
     public int modifyProfessor(User user) throws SQLException{
         int result = 0;
         String query = "UPDATE TABLE Usuarios SET nombre = ?, fechaIngreso = ?, fechaExpiración = ?, gradoAcadémico= ?, fechaNacimiento = ? WHERE NumPersonal IN(?)";
