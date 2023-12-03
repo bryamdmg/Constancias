@@ -32,6 +32,19 @@ public class GenerateCertificatesController {
     TextField textFieldDirectorName;
 
     @FXML
+    TextField textFieldProject;
+    @FXML
+    TextField textFieldDuration;
+    @FXML
+    TextField textFieldPlace;
+    @FXML
+    TextArea textAreaInvolved;
+    @FXML
+    TextArea textAreaImpact;
+    @FXML
+    TextField textFieldDirectorProject;
+
+    @FXML
     TextArea textAreaAxis;
     @FXML
     TextArea textAreaProgram;
@@ -74,6 +87,25 @@ public class GenerateCertificatesController {
     }
 
     @FXML
+    private void generateProjectCertificate() {
+        ProfessorDAO professorDAO = new ProfessorDAO();
+        User professor = null;
+        try {
+            professor = professorDAO.getProfessorIdNameByPersonalNum(SessionDetails
+                    .getInstance().getId());
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+
+        TemplateProject templateProject = new TemplateProject(professor.getName(), textFieldProject.getText(),
+                textFieldDuration.getText(), textFieldPlace.getText(), textAreaInvolved.getText(),
+                textAreaImpact.getText(), textFieldDirectorProject.getText(), getFileName(professor)
+                +"/" +professor.getName() + "ConstanciaProyecto" + java.time.LocalDate.now());
+
+        templateProject.createCertificated();
+    }
+
+    @FXML
     private void generatePLADEACertificate() {
         ProfessorDAO professorDAO = new ProfessorDAO();
         User professor = null;
@@ -84,12 +116,12 @@ public class GenerateCertificatesController {
             sqlException.printStackTrace();
         }
 
-        TemplatePLADEA templateJury = new TemplatePLADEA(professor.getName(), textAreaAxis.getText(),
+        TemplatePLADEA templatePLADEA = new TemplatePLADEA(professor.getName(), textAreaAxis.getText(),
                 textAreaProgram.getText(), textAreaObjectives.getText(), textAreaActions.getText(),
                 textAreaGoals.getText(), textFieldDirectorPLADEA.getText(), getFileName(professor)
                 +"/" +professor.getName() + "ConstanciaPLADEA" + java.time.LocalDate.now());
 
-        templateJury.createCertificated();
+        templatePLADEA.createCertificated();
     }
 
     private String getFileName(User user) {
