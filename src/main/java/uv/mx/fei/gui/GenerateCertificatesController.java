@@ -5,17 +5,11 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import uv.mx.fei.logic.ProfessorDAO;
-import uv.mx.fei.logic.domain.JuryInfo;
-import uv.mx.fei.logic.domain.SessionDetails;
-import uv.mx.fei.logic.domain.TemplateJury;
-import uv.mx.fei.logic.domain.User;
+import uv.mx.fei.logic.domain.*;
 
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +30,19 @@ public class GenerateCertificatesController {
     TextArea textAreaResult;
     @FXML
     TextField textFieldDirectorName;
+
+    @FXML
+    TextArea textAreaAxis;
+    @FXML
+    TextArea textAreaProgram;
+    @FXML
+    TextArea textAreaObjectives;
+    @FXML
+    TextArea textAreaActions;
+    @FXML
+    TextArea textAreaGoals;
+    @FXML
+    TextArea textFieldDirectorPLADEA;
 
     @FXML
     private void generateJuryCertificate() {
@@ -62,6 +69,25 @@ public class GenerateCertificatesController {
         TemplateJury templateJury = new TemplateJury(professor.getName(), textFieldServedAs.getText(),
                 textFieldDegreeName.getText(), infos, textFieldDirectorName.getText(), getFileName(professor)
                 +"/" +professor.getName() + "ConstanciaJurado" + java.time.LocalDate.now());
+
+        templateJury.createCertificated();
+    }
+
+    @FXML
+    private void generatePLADEACertificate() {
+        ProfessorDAO professorDAO = new ProfessorDAO();
+        User professor = null;
+        try {
+            professor = professorDAO.getProfessorIdNameByPersonalNum(SessionDetails
+                    .getInstance().getId());
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+
+        TemplatePLADEA templateJury = new TemplatePLADEA(professor.getName(), textAreaAxis.getText(),
+                textAreaProgram.getText(), textAreaObjectives.getText(), textAreaActions.getText(),
+                textAreaGoals.getText(), textFieldDirectorPLADEA.getText(), getFileName(professor)
+                +"/" +professor.getName() + "ConstanciaPLADEA" + java.time.LocalDate.now());
 
         templateJury.createCertificated();
     }
