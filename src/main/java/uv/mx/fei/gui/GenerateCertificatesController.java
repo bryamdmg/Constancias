@@ -10,9 +10,11 @@ import uv.mx.fei.logic.domain.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class GenerateCertificatesController {
     @FXML
@@ -209,6 +211,70 @@ public class GenerateCertificatesController {
             path.mkdirs();
         }
         return path.getAbsolutePath().toString();
+    }
+
+    @FXML
+    private void visualizeFile() throws IOException {
+        if (tableViewCertificates.getSelectionModel().getSelectedItem() != null) {
+            String filePath = tableViewCertificates.getSelectionModel().getSelectedItem().getAbsolutePath();
+            switch (getOperativeSystem()) {
+                case "windows":
+                    Runtime.getRuntime().exec("cmd /c start \"\" \"" + filePath + "\"");
+                    break;
+                case "mac os x":
+                    Runtime.getRuntime().exec("open \"" + filePath + "\"");
+                    break;
+                case "linux":
+                    ProcessBuilder processBuilder = new ProcessBuilder("xdg-open", filePath);
+                    processBuilder.start();
+                    break;
+                default:
+                    AlertPopUpGenerator.showCustomMessage(Alert.AlertType.ERROR,
+                            "Error", "No se encontró el sistema operativo");
+                    break;
+            }
+        } else {
+            AlertPopUpGenerator.showCustomMessage(Alert.AlertType.WARNING,
+                    "", "Selecciona un archivo para visualizar");
+        }
+    }
+
+    @FXML
+    private void downloadFile() {
+        if (tableViewCertificates.getSelectionModel().getSelectedItem() != null) {
+            try {
+                copyFile(tableViewCertificates.getSelectionModel().getSelectedItem());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            AlertPopUpGenerator.showCustomMessage(Alert.AlertType.WARNING,
+                    "", "Selecciona un archivo para descargar");
+        }
+    }
+
+    private void copyFile(File file) throws IOException {
+        File fileToSave = new File(System.getProperty("user.home")+"/Downloads/"+file.getName());
+        if (fileToSave.exists()) {
+            if (confirmedCopyFile(file.getName())) {
+                fileToSave.delete();
+                Files.copy(file.toPath(), fileToSave.toPath());
+            }
+        } else {
+            Files.copy(file.toPath(), fileToSave.toPath());
+        }
+    }
+
+    public boolean confirmedCopyFile(String fileName) {
+        return AlertPopUpGenerator.showConfirmationMessage("Archivo existente","El archivo con el nombre "+fileName+" ya existe, ¿Deseas sobreescribirlo?");
+    }
+
+    private String getOperativeSystem() {
+        String operativeSystem = System.getProperty("os.name").toLowerCase();
+        if (operativeSystem.contains("win")) {
+            operativeSystem = "windows";
+        }
+        return operativeSystem;
     }
 
     private boolean confirmedLogOut() {
