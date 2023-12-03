@@ -104,11 +104,11 @@ public class TemplatePLADEA {
 
             PdfPTable table = new PdfPTable(5);
             table.setWidthPercentage(100);
-            PdfPCell axis = new PdfPCell(new Phrase("Nombre(s) del (los) alumno(s)", fontTNRB));
-            PdfPCell program = new PdfPCell(new Phrase("Título del trabajo", fontGILB));
-            PdfPCell objectives = new PdfPCell(new Phrase("Modalidad", fontTNRB));
-            PdfPCell actionsCell = new PdfPCell(new Phrase("Fecha de presentación", fontTNRB));
-            PdfPCell goalsCell = new PdfPCell(new Phrase("Resultado obtenido de la defensa", fontTNRB));
+            PdfPCell axis = new PdfPCell(new Phrase("Eje estratégico:", fontTNRB));
+            PdfPCell program = new PdfPCell(new Phrase("Programa estratégico:", fontGILB));
+            PdfPCell objectives = new PdfPCell(new Phrase("Objetivos generales:", fontTNRB));
+            PdfPCell actionsCell = new PdfPCell(new Phrase("Acciones:", fontTNRB));
+            PdfPCell goalsCell = new PdfPCell(new Phrase("Metas:", fontTNRB));
 
             table.addCell(axis);
             table.addCell(program);
@@ -125,7 +125,7 @@ public class TemplatePLADEA {
             document.add(table);
             document.add(Chunk.NEWLINE);
 
-            Paragraph bodyText4 = new Paragraph("A petición de la interesado y para los usos " +
+            Paragraph bodyText4 = new Paragraph("A petición de la interesada y para los usos " +
                     "legales que a la mismoa convengan, se extiende la presente en la ciudad de " +
                     "Xalapa de Enríquez, Veracruz a los "+ java.time.LocalDate.now());
 

@@ -42,7 +42,7 @@ public class GenerateCertificatesController {
     @FXML
     TextArea textAreaGoals;
     @FXML
-    TextArea textFieldDirectorPLADEA;
+    TextField textFieldDirectorPLADEA;
 
     @FXML
     private void generateJuryCertificate() {
