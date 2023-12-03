@@ -129,4 +129,19 @@ public class UsersDAO {
 
         return accessAccountList;
     }
+
+    public int deleteUserById(int id) throws SQLException {
+        String query = "DELETE FROM Usuarios WHERE Id_usuario=(?)";
+        DataBaseManager databaseManager = new DataBaseManager();
+        Connection connection = databaseManager.getConnection();
+
+        int result;
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        result = preparedStatement.executeUpdate();
+
+        databaseManager.closeConnection();
+
+        return result;
+    }
 }
