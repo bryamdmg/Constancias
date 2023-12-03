@@ -58,6 +58,19 @@ public class GenerateCertificatesController {
     TextField textFieldDirectorPLADEA;
 
     @FXML
+    TextArea textAreaPeriod;
+    @FXML
+    TextArea textAreaProgramImple;
+    @FXML
+    TextArea textAreaEE;
+    @FXML
+    TextArea textAreaBSC;
+    @FXML
+    TextArea textAreaHSM;
+    @FXML
+    TextField textFieldDirectorImple;
+
+    @FXML
     private void generateJuryCertificate() {
         List<JuryInfo> infos = new ArrayList<>();
 
@@ -122,6 +135,25 @@ public class GenerateCertificatesController {
                 +"/" +professor.getName() + "ConstanciaPLADEA" + java.time.LocalDate.now());
 
         templatePLADEA.createCertificated();
+    }
+
+    @FXML
+    private void generateImpleCertificate() {
+        ProfessorDAO professorDAO = new ProfessorDAO();
+        User professor = null;
+        try {
+            professor = professorDAO.getProfessorIdNameByPersonalNum(SessionDetails
+                    .getInstance().getId());
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+
+        TemplateImplementation templateImple = new TemplateImplementation(professor.getName(), textAreaPeriod.getText(),
+                textAreaProgramImple.getText(), textAreaEE.getText(), textAreaBSC.getText(),
+                textAreaHSM.getText(), textFieldDirectorImple.getText(), getFileName(professor)
+                +"/" +professor.getName() + "ConstanciaImplementación" + java.time.LocalDate.now());
+
+        templateImple.createCertificated();
     }
 
     private String getFileName(User user) {

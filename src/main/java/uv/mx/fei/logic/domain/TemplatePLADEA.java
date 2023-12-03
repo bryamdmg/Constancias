@@ -80,16 +80,12 @@ public class TemplatePLADEA {
 
             document.add(bodyText1);
 
-            //document.add(Chunk.NEWLINE);
-
             Paragraph bodyText2 = new Paragraph("HACE CONSTAR");
 
             bodyText2.setFont(fontTNRB);
             bodyText2.setAlignment(Element.ALIGN_CENTER);
 
             document.add(bodyText2);
-
-            //document.add(Chunk.NEWLINE);
 
             Paragraph bodyText3 = new Paragraph("que la Mtra. " + professorName + ", Profesora " +
                     "adscrita a esta Facultad a mí cargo contribuyó a la consecución de las siguientes " +
