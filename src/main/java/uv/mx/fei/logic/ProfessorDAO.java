@@ -60,7 +60,7 @@ public class ProfessorDAO {
             User user = new User();
             user.setId(resultSet.getInt("Id_usuario"));
             user.setStaffNumber(resultSet.getInt("numPersonal"));
-            user.setUsername(resultSet.getString("nombre"));
+            user.setName(resultSet.getString("nombre"));
             accessAccountList.add(user);
         }
         databaseManager.closeConnection();

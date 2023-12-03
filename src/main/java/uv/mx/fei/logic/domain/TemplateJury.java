@@ -172,11 +172,11 @@ public class TemplateJury {
             if (confirmedCopyFile(file.getName())) {
                 fileToSave.delete();
                 Files.copy(file.toPath(), fileToSave.toPath());
-                AlertPopUpGenerator.showConfirmationMessage("constancia generada", "Revisa la carpeta de descargas");
+                AlertPopUpGenerator.showConfirmationMessage("Constancia generada", "Revisa la carpeta de descargas");
             }
         } else {
             Files.copy(file.toPath(), fileToSave.toPath());
-            AlertPopUpGenerator.showConfirmationMessage("constancia generada", "Revisa la carpeta de descargas");
+            AlertPopUpGenerator.showConfirmationMessage("Constancia generada", "Revisa la carpeta de descargas");
         }
     }
 

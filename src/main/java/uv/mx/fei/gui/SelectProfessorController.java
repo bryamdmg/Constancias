@@ -46,7 +46,7 @@ public class SelectProfessorController {
         if (professor != null) {
             TransferProfessor.setId(professor.getId());
             TransferProfessor.setName(professor.getName());
-            MainApp.changeView("login-view.fxml");
+            MainApp.changeView("certificates-view.fxml");
         } else {
             AlertPopUpGenerator.showCustomMessage(Alert.AlertType.WARNING,
                     "", "Selecciona un profesor para ver sus constancias");

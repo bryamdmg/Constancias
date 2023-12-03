@@ -259,9 +259,11 @@ public class GenerateCertificatesController {
             if (confirmedCopyFile(file.getName())) {
                 fileToSave.delete();
                 Files.copy(file.toPath(), fileToSave.toPath());
+                AlertPopUpGenerator.showConfirmationMessage("Constancia generada", "Revisa la carpeta de descargas");
             }
         } else {
             Files.copy(file.toPath(), fileToSave.toPath());
+            AlertPopUpGenerator.showConfirmationMessage("Constancia generada", "Revisa la carpeta de descargas");
         }
     }
 
