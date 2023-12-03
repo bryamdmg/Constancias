@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1024.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uv.mx.fei.gui.GUI_MODIFICAR_USUARIOController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1024.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uv.mx.fei.gui.GUI_AGREGAR_USUARIOController">
    <children>
       <AnchorPane layoutX="62.0" layoutY="60.0" prefHeight="520.0" prefWidth="900.0" style="-fx-background-color: white;">
          <children>
-            <Label alignment="TOP_CENTER" layoutX="281.0" layoutY="14.0" text="Modificar Usuario" textAlignment="CENTER">
+            <Label alignment="TOP_CENTER" layoutX="281.0" layoutY="14.0" text="Agregar Usuario" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="40.0" />
                </font>
@@ -23,7 +23,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="staffNumberTextField" editable="false" layoutX="294.0" layoutY="85.0" prefHeight="35.0" prefWidth="503.0">
+            <TextField fx:id="staffNumberTextField" layoutX="294.0" layoutY="85.0" prefHeight="35.0" prefWidth="503.0">
                <font>
                   <Font size="16.0" />
                </font>
@@ -62,12 +62,12 @@
             <DatePicker fx:id="expirationDatePicker" layoutX="294.0" layoutY="245.0" prefHeight="35.0" prefWidth="503.0" promptText="Ej:14/02/2013" />
             <DatePicker fx:id="birthDatePicker" layoutX="294.0" layoutY="404.0" prefHeight="35.0" prefWidth="503.0" promptText="Ej:14/02/2013" />
             <ComboBox fx:id="academicDegreeComboBox" layoutX="294.0" layoutY="302.0" prefHeight="35.0" prefWidth="503.0" promptText="--Seleccione su grado académico--" />
-            <Button layoutX="392.0" layoutY="462.0" mnemonicParsing="false" onAction="#cancelChangesButtonClick" text="Cancelar">
+            <Button layoutX="363.0" layoutY="462.0" mnemonicParsing="false" onAction="#cancelChangesButtonClick" text="Cancelar">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button layoutX="563.0" layoutY="462.0" mnemonicParsing="false" onAction="#saveChangesButtonClick" text="Guardar cambios">
+            <Button layoutX="523.0" layoutY="462.0" mnemonicParsing="false" onAction="#saveChangesButtonClick" text="Guardar cambios">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
