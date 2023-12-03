@@ -5,8 +5,12 @@ import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import uv.mx.fei.gui.AlertPopUpGenerator;
 
+import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
 
 public class TemplatePLADEA {
     String professorName;
@@ -148,5 +152,30 @@ public class TemplatePLADEA {
         } finally {
             document.close();
         }
+
+        File file = new File(fileName+".pdf");
+        try {
+            copyFile(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void copyFile(File file) throws IOException {
+        File fileToSave = new File(System.getProperty("user.home")+"/Downloads/"+file.getName());
+        if (fileToSave.exists()) {
+            if (confirmedCopyFile(file.getName())) {
+                fileToSave.delete();
+                Files.copy(file.toPath(), fileToSave.toPath());
+                AlertPopUpGenerator.showConfirmationMessage("constancia generada", "Revisa la carpeta de descargas");
+            }
+        } else {
+            Files.copy(file.toPath(), fileToSave.toPath());
+            AlertPopUpGenerator.showConfirmationMessage("constancia generada", "Revisa la carpeta de descargas");
+        }
+    }
+
+    public boolean confirmedCopyFile(String fileName) {
+        return AlertPopUpGenerator.showConfirmationMessage("Archivo existente","El archivo con el nombre "+fileName+" ya existe, ¿Deseas sobreescribirlo?");
     }
 }
