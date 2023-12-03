@@ -21,16 +21,18 @@ public class UsersDAOTest {
         
         user = new User();
         user.setStaffNumber(12345);
+        user.setUsername("emeneses");
         user.setName("Erica meneses rico");
         user.setAcademicDegree("Licenciatura");
         user.setJoinDate(Date.valueOf(LocalDate.of(2010, Month.FEBRUARY, 28)));
         user.setExpirationDate(Date.valueOf(LocalDate.of(2040, Month.DECEMBER, 20)));
         user.setBirthDate(Date.valueOf(LocalDate.of(1990, Month.JULY, 30)));
+        
     }
     
     @BeforeAll
     public static void setUpClass() {
-        String query = "INSERT INTO Profesores(NumPersonal, nombre, fechaIngreso, fechaExpiración, gradoAcadémico, fechaNacimiento) VALUES(?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Profesores(NumPersonal, nombre, fechaIngreso, fechaExpiración, gradoAcadémico, fechaNacimiento, nombreUsuario) VALUES(?, ?, ?, ?, ?, ?, ?)";
         
         try{
             PreparedStatement statement = dbm.getConnection().prepareStatement(query);
@@ -41,6 +43,7 @@ public class UsersDAOTest {
             statement.setDate(4, user.getExpirationDate());
             statement.setString(5, user.getAcademicDegree());
             statement.setDate(6, user.getBirthDate());
+            statement.setString(7, user.getUsername());
             
             statement.executeUpdate();
         }catch(SQLException exception){
@@ -71,7 +74,7 @@ public class UsersDAOTest {
         user.setAcademicDegree("Maestría");
         user.setName("Erika Meneses Rico");
         
-        assertTrue(userDAO.modifyProfessor(user) > 0);
+        assertTrue(userDAO.modifyUser(user) > 0);
     }
     
     @Test
@@ -98,7 +101,7 @@ public class UsersDAOTest {
         newUser.setExpirationDate(Date.valueOf(LocalDate.of(2030, Month.JANUARY, 5)));
         newUser.setJoinDate(Date.valueOf(LocalDate.of(2000, Month.FEBRUARY, 10)));
         newUser.setName("Juan Carlos Pérez Arriaga");
-        newUser.setUserType("Profesor");
+        newUser.setType("Profesor");
         
         assertTrue(userDAO.addUser(newUser) > 0);
     }

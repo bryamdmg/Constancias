@@ -65,17 +65,6 @@ public class User {
         return name.isBlank() && academicDegree.isBlank();
     }
     
-    /*@Override
-    public boolean equals(Object obj){
-        boolean result = false;
-
-        if(obj instanceof User user){
-            result = user.name.equals(name) && user.staffNumber == staffNumber && user.birthDate.equals(birthDate);
-        }
-
-        return result;
-    }*/
-
     public int getId() {
         return id;
     }
@@ -88,15 +77,15 @@ public class User {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setType(String t) {
+        type = t;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String un) {
+        username = un;
     }
 }

@@ -8,7 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 
-public class GUI_ACTUALIZAR_FIRMAController{
+public class UpdateSignatureController{
 
     @FXML
     private PasswordField oldSignatureField;

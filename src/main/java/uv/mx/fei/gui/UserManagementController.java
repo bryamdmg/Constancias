@@ -38,7 +38,7 @@ public class UserManagementController {
         UsersDAO userDAO = new UsersDAO();
         tableViewUsers.getItems().clear();
         try {
-            tableViewUsers.getItems().addAll(userDAO.getUsersList());
+            tableViewUsers.getItems().addAll(userDAO.getUserList());
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         }

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1024.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uv.mx.fei.gui.ModifyUserController">
+   <children>
+      <AnchorPane layoutX="62.0" layoutY="35.0" prefHeight="570.0" prefWidth="900.0" style="-fx-background-color: white;">
+         <children>
+            <Label alignment="TOP_CENTER" layoutX="281.0" layoutY="7.0" text="Modificar Usuario" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="40.0" />
+               </font>
+            </Label>
+            <Label layoutX="64.0" layoutY="68.0" text="Num Personal: ">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="staffNumberTextField" editable="false" layoutX="294.0" layoutY="65.0" prefHeight="35.0" prefWidth="503.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <Label layoutX="64.0" layoutY="170.0" text="Nombre:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="nameTextField" layoutX="294.0" layoutY="172.0" prefHeight="35.0" prefWidth="503.0" promptText="Ej: Erika Meneses Rico">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <Label layoutX="64.0" layoutY="225.0" text="Fecha de ingreso:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="64.0" layoutY="281.0" text="Fecha de expiración:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="64.0" layoutY="341.0" text="Grado académico:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="64.0" layoutY="440.0" text="Fecha de nacimiento:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="joinDatePicker" layoutX="294.0" layoutY="227.0" prefHeight="35.0" prefWidth="503.0" promptText="Ej:14/02/2013" />
+            <DatePicker fx:id="expirationDatePicker" layoutX="294.0" layoutY="281.0" prefHeight="35.0" prefWidth="503.0" promptText="Ej:14/02/2013" />
+            <DatePicker fx:id="birthDatePicker" layoutX="294.0" layoutY="440.0" prefHeight="35.0" prefWidth="503.0" promptText="Ej:14/02/2013" />
+            <ComboBox fx:id="academicDegreeComboBox" layoutX="294.0" layoutY="338.0" prefHeight="35.0" prefWidth="503.0" promptText="--Seleccione su grado académico--" />
+            <Button layoutX="392.0" layoutY="504.0" mnemonicParsing="false" onAction="#cancelChangesButtonClick" text="Cancelar">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="563.0" layoutY="504.0" mnemonicParsing="false" onAction="#saveChangesButtonClick" text="Guardar cambios">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+            <Label layoutX="64.0" layoutY="392.0" text="Tipo Usuario:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="userTypeComboBox" layoutX="294.0" layoutY="390.0" prefHeight="35.0" prefWidth="503.0" promptText="--Seleccione su grado académico--" />
+            <Label layoutX="64.0" layoutY="118.0" text="Nombre de usuario:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="usernameTextField" layoutX="294.0" layoutY="115.0" prefHeight="35.0" prefWidth="503.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+         </children>
+      </AnchorPane>
+   </children>
+</Pane>
