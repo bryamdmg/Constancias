@@ -76,6 +76,37 @@ public class UsersDAOTest {
     
     @Test
     public void testModifyUserFail() throws SQLException {
+        //Modifying a non-existent user
+        UsersDAO userDAO = new UsersDAO();
+        User fakeUser = new User();
         
+        fakeUser.setStaffNumber(4652);
+        fakeUser.setAcademicDegree("Maestría");
+        fakeUser.setName("Erika Meneses Rico");
+        
+        assertTrue(userDAO.modifyUser(fakeUser) <= 0);
+    }
+
+    @Test
+    public void testAddUser() throws SQLException {
+        UsersDAO userDAO = new UsersDAO();
+        User newUser = new User();
+        
+        newUser.setStaffNumber(4658);
+        newUser.setAcademicDegree("Maestría");
+        newUser.setBirthDate(Date.valueOf(LocalDate.of(1979, Month.MARCH, 20)));
+        newUser.setExpirationDate(Date.valueOf(LocalDate.of(2030, Month.JANUARY, 5)));
+        newUser.setJoinDate(Date.valueOf(LocalDate.of(2000, Month.FEBRUARY, 10)));
+        newUser.setName("Juan Carlos Pérez Arriaga");
+        newUser.setUserType("Profesor");
+        
+        assertTrue(userDAO.addUser(newUser) > 0);
+    }
+
+    @Test
+    public void testGetUserList() throws Exception {
+        UsersDAO userDAO = new UsersDAO();
+        
+        assertTrue(!userDAO.getUserList().isEmpty());
     }
 }
