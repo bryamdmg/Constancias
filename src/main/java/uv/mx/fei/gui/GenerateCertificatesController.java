@@ -1,9 +1,10 @@
 package uv.mx.fei.gui;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import uv.mx.fei.logic.ProfessorDAO;
 import uv.mx.fei.logic.domain.*;
 
@@ -69,6 +70,16 @@ public class GenerateCertificatesController {
     TextArea textAreaHSM;
     @FXML
     TextField textFieldDirectorImple;
+
+    @FXML
+    TableView<File> tableViewCertificates;
+
+    public void initialize() {
+        if (getCertificatesDirectory().exists()) {
+
+            fillTableViewCertificates();
+        }
+    }
 
     @FXML
     private void generateJuryCertificate() {
@@ -154,6 +165,40 @@ public class GenerateCertificatesController {
                 +"/" +professor.getName() + "ConstanciaImplementación" + java.time.LocalDate.now());
 
         templateImple.createCertificated();
+    }
+
+    private File getCertificatesDirectory() {
+        ProfessorDAO professorDAO = new ProfessorDAO();
+        User professor = null;
+        try {
+            professor = professorDAO.getProfessorIdNameByPersonalNum(SessionDetails
+                    .getInstance().getId());
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        File directory = new File(System.getProperty("user.home")
+                +"/IdeaProjects/Constancias/certificates/"
+                +professor.getId());
+        return directory;
+    }
+
+    private void fillTableViewCertificates() {
+        TableColumn<File, String> nameColumn = new TableColumn<>("Certificado");
+
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+        tableViewCertificates.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        tableViewCertificates.getColumns().clear();
+        tableViewCertificates.getColumns().addAll(nameColumn);
+
+        File folder = new File(getCertificatesDirectory().getAbsolutePath());
+        File[] files = folder.listFiles();
+
+        ObservableList<File> fileList = FXCollections.observableArrayList(files);
+
+        tableViewCertificates.getItems().clear();
+        tableViewCertificates.setItems(fileList);
     }
 
     private String getFileName(User user) {

@@ -480,8 +480,8 @@
                                  <children>
                                     <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                        <children>
-                                          <Button layoutX="182.0" layoutY="211.0" mnemonicParsing="false" text="Actualizar" />
-                                          <Button mnemonicParsing="false" text="Generar constancia">
+                                          <Button layoutX="182.0" layoutY="211.0" mnemonicParsing="false" text="Ver constancia" />
+                                          <Button mnemonicParsing="false" text="Descargar constancia">
                                              <VBox.margin>
                                                 <Insets top="20.0" />
                                              </VBox.margin>
@@ -493,7 +493,7 @@
                                           </Button>
                                        </children>
                                     </VBox>
-                                    <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TableView fx:id="tableViewCertificates" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                  </children>
                               </GridPane>
                            </children>
