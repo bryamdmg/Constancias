@@ -13,7 +13,8 @@ import javafx.scene.control.TextField;
 import uv.mx.fei.logic.UsersDAO;
 import uv.mx.fei.logic.domain.User;
 
-public class GUI_AGREGAR_USUARIOController{
+public class GUI_MODIFICAR_USUARIOController{
+
     @FXML
     private TextField staffNumberTextField;
     @FXML
@@ -24,16 +25,16 @@ public class GUI_AGREGAR_USUARIOController{
     private DatePicker expirationDatePicker;
     @FXML
     private DatePicker birthDatePicker;
-    @FXML
+    @FXML 
     private ComboBox<String> userTypeComboBox;
     @FXML
     private ComboBox<String> academicDegreeComboBox;
-    
+
     @FXML
-    public void initialize(){
+    public void initialize() {
         academicDegreeComboBox.getItems().addAll("Licenciatura", "Maestría", "Doctorado");
         userTypeComboBox.getItems().addAll("Administrador", "Profesor");
-    }
+    }    
     
     @FXML
     private void saveChangesButtonClick(ActionEvent event) throws IOException {
@@ -52,8 +53,8 @@ public class GUI_AGREGAR_USUARIOController{
                 try{
                     UsersDAO userDAO = new UsersDAO();
                     
-                    if(userDAO.addUser(user) > 0){
-                        AlertPopUpGenerator.showCustomMessage(Alert.AlertType.INFORMATION, "Operación exitosa", "El nuevo usuario ha sido agregado exitosamente");
+                    if(userDAO.modifyUser(user) > 0){
+                        AlertPopUpGenerator.showCustomMessage(Alert.AlertType.INFORMATION, "Modificación exitosa", "Los datos del usuario han sido modificados exitosamente");
                         
                         MainApp.changeView("usermanagement-view.fxml");
                     }
@@ -83,7 +84,6 @@ public class GUI_AGREGAR_USUARIOController{
         joinDatePicker.setValue(user.getJoinDate().toLocalDate());
         expirationDatePicker.setValue(user.getExpirationDate().toLocalDate());
         birthDatePicker.setValue(user.getBirthDate().toLocalDate());
-        userTypeComboBox.setValue(user.getType());
         academicDegreeComboBox.setValue(user.getAcademicDegree());
     }
     
