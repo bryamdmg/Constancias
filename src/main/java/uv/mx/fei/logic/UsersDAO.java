@@ -18,8 +18,8 @@ public class UsersDAO {
     }
 
     public int addUser(User user) throws SQLException{
-        int result = 0;
-        String query = "INSERT INTO Usuarios(NumPersonal, nombre, tipoUsuario, fechaIngreso, fechaExpiración, gradoAcadémico, fechaNacimiento) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        int result;
+        String query = "INSERT INTO Usuarios(NumPersonal, nombre, tipoUsuario, fechaIngreso, fechaExpiración, gradoAcadémico, fechaNacimiento, nombreUsuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement statement = dataBaseManager.getConnection().prepareStatement(query);
 
         statement.setInt(1, user.getStaffNumber());
@@ -29,6 +29,7 @@ public class UsersDAO {
         statement.setDate(5, user.getExpirationDate());
         statement.setString(6, user.getAcademicDegree());
         statement.setDate(7, user.getBirthDate());
+        statement.setString(8, user.getUsername());
 
         result = statement.executeUpdate();
         dataBaseManager.closeConnection();
@@ -37,8 +38,8 @@ public class UsersDAO {
     }
 
     public int modifyUser(User user) throws SQLException{
-        int result = 0;
-        String query = "UPDATE TABLE Usuarios SET nombre = ?, tipoUsuario = ?, fechaIngreso = ?, fechaExpiración = ?, gradoAcadémico= ?, fechaNacimiento = ? WHERE NumPersonal IN(?)";
+        int result;
+        String query = "UPDATE TABLE Usuarios SET nombre = ?, tipoUsuario = ?, fechaIngreso = ?, fechaExpiración = ?, gradoAcadémico= ?, fechaNacimiento = ?, nombreUsuario = ? WHERE NumPersonal IN(?)";
         PreparedStatement statement = dataBaseManager.getConnection().prepareStatement(query);
 
         statement.setString(1, user.getName());
@@ -48,6 +49,7 @@ public class UsersDAO {
         statement.setString(5, user.getAcademicDegree());
         statement.setDate(6, user.getBirthDate());
         statement.setInt(7, user.getStaffNumber());
+        statement.setString(8, user.getUsername());
 
         result = statement.executeUpdate();
         dataBaseManager.closeConnection();

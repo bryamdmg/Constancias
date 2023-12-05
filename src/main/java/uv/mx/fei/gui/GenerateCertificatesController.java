@@ -184,6 +184,7 @@ public class GenerateCertificatesController {
         return directory;
     }
 
+    @FXML
     private void fillTableViewCertificates() {
         TableColumn<File, String> nameColumn = new TableColumn<>("Certificado");
 

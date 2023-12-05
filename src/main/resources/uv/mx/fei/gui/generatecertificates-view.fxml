@@ -1,21 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uv.mx.fei.gui.GenerateCertificatesController">
+<HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uv.mx.fei.gui.GenerateCertificatesController">
    <children>
       <TabPane prefHeight="600.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE">
          <tabs>
@@ -480,7 +469,15 @@
                                  <children>
                                     <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                        <children>
-                                          <Button layoutX="182.0" layoutY="211.0" mnemonicParsing="false" onAction="#visualizeFile" text="Ver constancia" />
+                                          <Button layoutX="194.0" layoutY="188.0" mnemonicParsing="false" onAction="#fillTableViewCertificates" text="Actualizar">
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                          </Button>
+                                          <Button layoutX="182.0" layoutY="211.0" mnemonicParsing="false" onAction="#visualizeFile" text="Ver constancia">
+                                             <VBox.margin>
+                                                <Insets top="20.0" />
+                                             </VBox.margin></Button>
                                           <Button mnemonicParsing="false" onAction="#downloadFile" text="Descargar constancia">
                                              <VBox.margin>
                                                 <Insets top="20.0" />

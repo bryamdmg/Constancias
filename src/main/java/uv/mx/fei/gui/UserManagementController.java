@@ -45,17 +45,17 @@ public class UserManagementController {
 
     @FXML
     private void changeToUpdateSign() throws IOException {
-        MainApp.changeView("GUI_ACTUALIZAR_FIRMA.fxml");
+        MainApp.changeView("updatesignature-view.fxml");
     }
 
     @FXML
     private void changeToRegisterUser() throws IOException {
-        MainApp.changeView("GUI_AGREGAR_USUARIO.fxml");
+        MainApp.changeView("adduser-view.fxml");
     }
 
     @FXML
     private void changeToModifyUser() throws IOException {
-        MainApp.changeView("GUI_MODIFICAR_USUARIO.fxml");
+        MainApp.changeView("modifyuser-view.fxml");
     }
 
     @FXML
