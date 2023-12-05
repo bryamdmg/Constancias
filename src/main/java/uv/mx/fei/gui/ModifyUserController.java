@@ -38,7 +38,7 @@ public class ModifyUserController{
     @FXML
     public void initialize() {
         academicDegreeComboBox.getItems().addAll("Licenciatura", "Maestría", "Doctorado");
-        userTypeComboBox.getItems().addAll("Administrador", "Profesor");
+        userTypeComboBox.getItems().addAll("Administrador", "Profesor","Administrativo");
     }
 
     @FXML
