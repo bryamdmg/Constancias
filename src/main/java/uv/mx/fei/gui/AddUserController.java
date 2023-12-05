@@ -13,7 +13,9 @@ import javafx.scene.control.TextField;
 import uv.mx.fei.logic.UsersDAO;
 import uv.mx.fei.logic.domain.User;
 
-public class GUI_AGREGAR_USUARIOController{
+public class AddUserController{
+    @FXML
+    private TextField usernameTextField;
     @FXML
     private TextField staffNumberTextField;
     @FXML
@@ -29,14 +31,13 @@ public class GUI_AGREGAR_USUARIOController{
     @FXML
     private ComboBox<String> academicDegreeComboBox;
     
-    @FXML
     public void initialize(){
         academicDegreeComboBox.getItems().addAll("Licenciatura", "Maestría", "Doctorado");
         userTypeComboBox.getItems().addAll("Administrador", "Profesor");
     }
     
     @FXML
-    private void saveChangesButtonClick(ActionEvent event) throws IOException {
+    private void saveChangesButtonClick(ActionEvent event) throws IOException{
         if(!areFieldsBlank()){
             if(areDatesValid()){
                 User user = new User();
@@ -48,6 +49,7 @@ public class GUI_AGREGAR_USUARIOController{
                 user.setBirthDate(Date.valueOf(birthDatePicker.getValue()));
                 user.setType(userTypeComboBox.getValue());
                 user.setAcademicDegree(academicDegreeComboBox.getValue());
+                user.setUsername(usernameTextField.getText());
 
                 try{
                     UsersDAO userDAO = new UsersDAO();
@@ -69,7 +71,7 @@ public class GUI_AGREGAR_USUARIOController{
     }
 
     @FXML
-    private void cancelChangesButtonClick(ActionEvent event) throws IOException {
+    private void cancelChangesButtonClick(ActionEvent event) throws IOException{
         boolean result = AlertPopUpGenerator.showConfirmationMessage("Cancelar cambios", "¿Está seguro de que realmente desea cancelar la operación? Los cambios no guardados se perderán");
         
         if(result){
@@ -90,7 +92,7 @@ public class GUI_AGREGAR_USUARIOController{
     public boolean areFieldsBlank(){
         boolean result = false;
         
-        if(staffNumberTextField.getText().isBlank() || nameTextField.getText().isBlank()){
+        if(staffNumberTextField.getText().isBlank() || nameTextField.getText().isBlank() || usernameTextField.getText().isBlank()){
             result = false;
         }
         
