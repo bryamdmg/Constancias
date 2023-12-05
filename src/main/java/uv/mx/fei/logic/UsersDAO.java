@@ -82,6 +82,7 @@ public class UsersDAO {
     public String getAccessAccountTypeByUsername(String username) throws SQLException {
         String query = "SELECT tipoUsuario FROM Usuarios WHERE nombreUsuario=(?)";
         PreparedStatement preparedStatement = dbm.getConnection().prepareStatement(query);
+        
         preparedStatement.setString(1, username);
         ResultSet resultSet = preparedStatement.executeQuery();
         dbm.closeConnection();
@@ -99,6 +100,21 @@ public class UsersDAO {
         PreparedStatement preparedStatement = dbm.getConnection().prepareStatement(query);
         preparedStatement.setString(1, username);
         preparedStatement.setString(2, password);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        result = resultSet.next();
+        dbm.closeConnection();
+        
+        return result;
+    }
+    
+    public boolean isUserAdmin(String username, String password) throws SQLException{
+        boolean result;
+        String query = "SELECT 1 FROM UsuarioS WHERE nombreUsuario = ?, AND contrasena =  AND tipoUsuario = 'Administrador'";
+        
+        PreparedStatement preparedStatement = dbm.getConnection().prepareStatement(query);
+        preparedStatement.setString(1, username);
+        preparedStatement.setString(2, password);
+        
         ResultSet resultSet = preparedStatement.executeQuery();
         result = resultSet.next();
         dbm.closeConnection();

@@ -33,7 +33,7 @@ public class AddUserController{
     
     public void initialize(){
         academicDegreeComboBox.getItems().addAll("Licenciatura", "Maestría", "Doctorado");
-        userTypeComboBox.getItems().addAll("Administrador", "Profesor");
+        userTypeComboBox.getItems().addAll("Administrador", "Administrativo", "Profesor");
     }
     
     @FXML
@@ -111,17 +111,17 @@ public class AddUserController{
         boolean result = true;
         
         //Join date cannot go after expiration date
-        if(joinDatePicker.getValue().compareTo(expirationDatePicker.getValue()) > 0){
+        if(joinDatePicker.getValue().compareTo(expirationDatePicker.getValue()) < 0){
             result = false;
         }
         
         //Join or expiration date cannot go before birthDate
-        if(birthDatePicker.getValue().compareTo(joinDatePicker.getValue()) > 0 || birthDatePicker.getValue().compareTo(expirationDatePicker.getValue()) > 0){
+        if(birthDatePicker.getValue().compareTo(joinDatePicker.getValue())< 0 || birthDatePicker.getValue().compareTo(expirationDatePicker.getValue()) < 0){
             result = false;
         }
         
         //None of these dates can be in the future
-        if(birthDatePicker.getValue().compareTo(LocalDate.now()) > 0 || joinDatePicker.getValue().compareTo(LocalDate.now()) > 0 || expirationDatePicker.getValue().compareTo(LocalDate.now()) > 0){
+        if(birthDatePicker.getValue().compareTo(LocalDate.now()) < 0 || joinDatePicker.getValue().compareTo(LocalDate.now()) < 0 || expirationDatePicker.getValue().compareTo(LocalDate.now()) < 0){
             result = false;
         }
         

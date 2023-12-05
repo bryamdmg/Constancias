@@ -13,12 +13,11 @@ public class SignatureDAO {
     }
     
     public int updateSignature(String signature) throws SQLException{
-        int result = 0;
         String query = "UPDATE Firmas SET firma = SHA2(?, 256)";
         PreparedStatement statement = dbm.getConnection().prepareStatement(query);
         statement.setString(1, query);
 
-        result = statement.executeUpdate();
+        int result = statement.executeUpdate();
         dbm.closeConnection();
 
         return result;
