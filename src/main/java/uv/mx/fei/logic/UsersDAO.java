@@ -79,29 +79,27 @@ public class UsersDAO {
         
         return userList;
     }
+    
+    public User getUserById(int id) throws SQLException{
+        User user = new User();
+        String query = "SELECT NumPersonal, nombre, tipoUsuario, fechaIngreso, fechaExpiración, gradoAcadémico, fechaNacimiento, nombreUsuario FROM Usuarios";
+        PreparedStatement statement = dbm.getConnection().prepareStatement(query);
+        ResultSet resultSet = statement.executeQuery();
 
-    public int modifyProfessor(User user) throws SQLException{
-        int result = 0;
-        String query = "UPDATE TABLE Usuarios SET nombre = ?, fechaIngreso = ?, fechaExpiración = ?, gradoAcadémico= ?, fechaNacimiento = ? WHERE NumPersonal IN(?)";
-        
-        try{
-            PreparedStatement statement = dbm.getConnection().prepareStatement(query);
-            
-            statement.setString(1, user.getName());
-            statement.setDate(2, user.getJoinDate());
-            statement.setDate(3, user.getExpirationDate());
-            statement.setString(4, user.getAcademicDegree());
-            statement.setDate(5, user.getBirthDate());
-            statement.setInt(6, user.getStaffNumber());
-            
-            result = statement.executeUpdate();
-        }catch(SQLException exception){
-            throw new SQLException("Couldn't connect to DB");
-        }finally{
-            dbm.closeConnection();
+        if(resultSet.next()){
+            user.setStaffNumber(resultSet.getInt("NumPersonal"));
+            user.setAcademicDegree(resultSet.getString("nombre"));
+            user.setType(resultSet.getString("tipoUsuario"));
+            user.setJoinDate(resultSet.getDate("fechaIngreso"));
+            user.setExpirationDate(resultSet.getDate("fechaExpiración"));
+            user.setAcademicDegree(resultSet.getString("gradoAcadémico"));
+            user.setBirthDate(resultSet.getDate("fechaNacimiento"));
+            user.setUsername(resultSet.getString("nombreUsuario"));
         }
         
-        return result;
+        dbm.closeConnection();
+        
+        return user;
     }
     
     public String getAccessAccountTypeByUsername(String username) throws SQLException {

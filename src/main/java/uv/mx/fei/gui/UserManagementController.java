@@ -11,6 +11,11 @@ import uv.mx.fei.logic.domain.User;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Arrays;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 public class UserManagementController {
 
@@ -44,22 +49,38 @@ public class UserManagementController {
     }
 
     @FXML
-    private void changeToUpdateSign() throws IOException {
+    private void changeToUpdateSign(ActionEvent event) throws IOException {
         MainApp.changeView("updatesignature-view.fxml");
     }
 
     @FXML
-    private void changeToRegisterUser() throws IOException {
+    private void changeToRegisterUser(ActionEvent event) throws IOException {
         MainApp.changeView("adduser-view.fxml");
     }
 
     @FXML
-    private void changeToModifyUser() throws IOException {
-        MainApp.changeView("modifyuser-view.fxml");
+    private void changeToModifyUser(ActionEvent event) throws IOException {
+        if (isItemSelected()) {
+            try{
+                int id = tableViewUsers.getSelectionModel().getSelectedItem().getId();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("modifyuser-view.fxml"));
+                Parent root = loader.load();
+                ModifyUserController modifyController = loader.getController();
+                modifyController.setUser(new UsersDAO().getUserById(id));
+
+                Scene scene = new Scene(root);
+                Stage currentStage = (Stage) scene.getWindow();
+                currentStage.setScene(new Scene(root));
+            }catch(SQLException exception){
+                AlertPopUpGenerator.showConnectionErrorMessage();
+            }
+        } else {
+            AlertPopUpGenerator.showCustomMessage(Alert.AlertType.WARNING, "", "Debes seleccionar el usuario que deseas modificar");
+        }
     }
 
     @FXML
-    private void actionDeleteUser() {
+    private void actionDeleteUser(ActionEvent event) {
         if (isItemSelected()) {
             int id = tableViewUsers.getSelectionModel().getSelectedItem().getId();
             if (isSelectedUserAdmin()) {
@@ -71,8 +92,7 @@ public class UserManagementController {
                 fillTableViewAccessAccounts();
             }
         } else {
-            AlertPopUpGenerator.showCustomMessage(Alert.AlertType.WARNING, "",
-                    "Debes seleccionar el usuario que deseas eliminar");
+            AlertPopUpGenerator.showCustomMessage(Alert.AlertType.WARNING, "", "Debes seleccionar el usuario que deseas eliminar");
         }
     }
 
@@ -108,7 +128,7 @@ public class UserManagementController {
     }
 
     @FXML
-    private void logOut() throws IOException {
+    private void logOut(ActionEvent event) throws IOException {
         if (confirmedLogOut()) {
             MainApp.changeView("login-view.fxml");
         }
