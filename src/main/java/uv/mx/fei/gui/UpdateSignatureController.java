@@ -1,5 +1,6 @@
 package uv.mx.fei.gui;
 
+<<<<<<< HEAD
 import java.io.IOException;
 import java.sql.SQLException;
 import javafx.event.ActionEvent;
@@ -7,6 +8,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import uv.mx.fei.logic.SignatureDAO;
+=======
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
+>>>>>>> origin/pre-release
 
 public class UpdateSignatureController{
 
@@ -25,6 +35,7 @@ public class UpdateSignatureController{
     }
 
     @FXML
+<<<<<<< HEAD
     private void cancelButtonClick(ActionEvent event) throws IOException{
         boolean result = AlertPopUpGenerator.showConfirmationMessage("Cancelar cambios", "¿Está seguro de que desea cancelar la modificación del usuario?");
         
@@ -92,5 +103,18 @@ public class UpdateSignatureController{
     
     public boolean doSignaturesMatch(){
         return newSignatureField.getText().contentEquals(confirmSignatureField.getText());
+=======
+    private void cancelButtonClick(ActionEvent event) {
+        Alert customMessage = new Alert(Alert.AlertType.WARNING);
+        customMessage.setHeaderText("Cancelar cambios");
+        customMessage.setContentText("¿Está seguro de que desea cancelar la modificación del usuario?");
+        
+        
+    }
+
+    @FXML
+    private void saveChangesButtonClick(ActionEvent event) {
+        
+>>>>>>> origin/pre-release
     }
 }

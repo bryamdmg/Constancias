@@ -110,6 +110,6 @@ public class UsersDAOTest {
     public void testGetUserList() throws Exception {
         UsersDAO userDAO = new UsersDAO();
         
-        assertTrue(!userDAO.getUserList().isEmpty());
+        assertTrue(!userDAO.getUsersList().isEmpty());
     }
 }

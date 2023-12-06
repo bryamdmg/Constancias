@@ -1,6 +1,7 @@
 package uv.mx.fei.gui;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -15,8 +16,6 @@ public class UserManagementController {
 
     @FXML
     private TableView<User> tableViewUsers;
-    private static String username;
-    private static String userType;
 
     @FXML
     private void initialize() {
@@ -42,6 +41,65 @@ public class UserManagementController {
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         }
+    }
+
+    @FXML
+    private void changeToUpdateSign() throws IOException {
+        MainApp.changeView("updatesignature-view.fxml");
+    }
+
+    @FXML
+    private void changeToRegisterUser() throws IOException {
+        MainApp.changeView("adduser-view.fxml");
+    }
+
+    @FXML
+    private void changeToModifyUser() throws IOException {
+        MainApp.changeView("modifyuser-view.fxml");
+    }
+
+    @FXML
+    private void actionDeleteUser() {
+        if (isItemSelected()) {
+            int id = tableViewUsers.getSelectionModel().getSelectedItem().getId();
+            if (isSelectedUserAdmin()) {
+                AlertPopUpGenerator.showCustomMessage(Alert.AlertType.WARNING, "",
+                        "No se pueden eliminar usuarios administrador");
+            } else {
+                deleteUser(id);
+                tableViewUsers.getItems().clear();
+                fillTableViewAccessAccounts();
+            }
+        } else {
+            AlertPopUpGenerator.showCustomMessage(Alert.AlertType.WARNING, "",
+                    "Debes seleccionar el usuario que deseas eliminar");
+        }
+    }
+
+    private void deleteUser(int id) {
+        UsersDAO userDAO = new UsersDAO();
+        if(confirmedDelete(tableViewUsers.getSelectionModel().getSelectedItem().getUsername())) {
+            try {
+                userDAO.deleteUserById(id);
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+        }
+    }
+
+    private boolean confirmedDelete(String name) {
+        return AlertPopUpGenerator.showConfirmationMessage("", "¿Está seguro que desea eliminar al usuario " + name + "?");
+    }
+
+    private boolean isItemSelected() {
+        return tableViewUsers.getSelectionModel().getSelectedItem() != null;
+    }
+
+    private boolean isSelectedUserAdmin() {
+        return tableViewUsers
+                .getSelectionModel()
+                .getSelectedItem()
+                .getType().equals(LoginController.USER_ADMINISTRATOR);
     }
 
     public boolean confirmedLogOut() {

@@ -7,3 +7,6 @@ INSERT INTO Usuarios (nombreUsuario, contrasena, tipoUsuario)
 
 INSERT INTO Usuarios (numPersonal, nombreUsuario, contrasena, tipoUsuario, nombre, fechaIngreso, fechaExpiración, gradoAcadémico, fechaNacimiento)
     VALUE (12345678, 'ocharan', SHA2('1', 256), 'Profesor', 'Jorge Octavio Ocharán Hernández', '2012-05-09', '2024-12-31', 'Dr.', '1980-11-20');
+
+INSERT INTO Usuarios (nombreUsuario, contrasena, tipoUsuario)
+VALUE ('admin', SHA2('admin', 256), 'Administrativo');

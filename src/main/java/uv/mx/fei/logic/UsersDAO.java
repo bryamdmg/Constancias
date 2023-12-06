@@ -13,7 +13,7 @@ public class UsersDAO {
     public UsersDAO(){
         dbm = new DataBaseManager();
     }
-    
+
     public int addUser(User user) throws SQLException{
         int result;
         String query = "INSERT INTO Usuarios(NumPersonal, nombre, tipoUsuario, fechaIngreso, fechaExpiración, gradoAcadémico, fechaNacimiento, nombreUsuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -50,7 +50,7 @@ public class UsersDAO {
 
         result = statement.executeUpdate();
         dbm.closeConnection();
-        
+
         return result;
     }
     
@@ -74,9 +74,34 @@ public class UsersDAO {
 
             userList.add(user);
         }
+        
         dbm.closeConnection();
         
         return userList;
+    }
+
+    public int modifyProfessor(User user) throws SQLException{
+        int result = 0;
+        String query = "UPDATE TABLE Usuarios SET nombre = ?, fechaIngreso = ?, fechaExpiración = ?, gradoAcadémico= ?, fechaNacimiento = ? WHERE NumPersonal IN(?)";
+        
+        try{
+            PreparedStatement statement = dbm.getConnection().prepareStatement(query);
+            
+            statement.setString(1, user.getName());
+            statement.setDate(2, user.getJoinDate());
+            statement.setDate(3, user.getExpirationDate());
+            statement.setString(4, user.getAcademicDegree());
+            statement.setDate(5, user.getBirthDate());
+            statement.setInt(6, user.getStaffNumber());
+            
+            result = statement.executeUpdate();
+        }catch(SQLException exception){
+            throw new SQLException("Couldn't connect to DB");
+        }finally{
+            dbm.closeConnection();
+        }
+        
+        return result;
     }
     
     public String getAccessAccountTypeByUsername(String username) throws SQLException {
@@ -119,6 +144,18 @@ public class UsersDAO {
         result = resultSet.next();
         dbm.closeConnection();
         
+        return result;
+    }
+
+    public int deleteUserById(int id) throws SQLException {
+        String query = "DELETE FROM Usuarios WHERE Id_usuario=(?)";
+
+        int result;
+        PreparedStatement preparedStatement = dbm.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        result = preparedStatement.executeUpdate();
+
+        dbm.closeConnection();
         return result;
     }
 }

@@ -1,5 +1,6 @@
 package uv.mx.fei.gui;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import uv.mx.fei.logic.ProfessorDAO;
@@ -34,7 +35,7 @@ public class LoginController {
         if (validation) {
             redirectToWindow();
         } else {
-            AlertPopUpGenerator.showMissingFilesMessage();
+            AlertPopUpGenerator.showCustomMessage(Alert.AlertType.WARNING, "Información inválida", "Revisa tu nombre de usuario o contraseña");
         }
     }
 
@@ -45,7 +46,7 @@ public class LoginController {
         String username = textFieldUser.getText();
 
         switch (userType) {
-            case USER_ADMIN -> MainApp.changeView("GUI_ACTUALIZAR_FIRMA.fxml");
+            case USER_ADMIN -> MainApp.changeView("selectprofessor-view.fxml");
             case USER_PROFESSOR -> {
                 ProfessorDAO professorDAO = new ProfessorDAO();
                 int professorId = professorDAO.getProfessorIdByUsername(username);

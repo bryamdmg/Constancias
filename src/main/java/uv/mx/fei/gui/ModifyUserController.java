@@ -1,7 +1,10 @@
+<<<<<<< HEAD
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
+=======
+>>>>>>> origin/pre-release
 package uv.mx.fei.gui;
 
 import java.io.IOException;
@@ -17,7 +20,19 @@ import javafx.scene.control.TextField;
 import uv.mx.fei.logic.UsersDAO;
 import uv.mx.fei.logic.domain.User;
 
+<<<<<<< HEAD
+<<<<<<<< HEAD:src/main/java/uv/mx/fei/gui/ModifyUserController.java
 public class ModifyUserController{
+========
+public class AddUserController{
+>>>>>>>> origin/pre-release:src/main/java/uv/mx/fei/gui/AddUserController.java
+=======
+<<<<<<<< HEAD:src/main/java/uv/mx/fei/gui/AddUserController.java
+public class AddUserController{
+========
+public class ModifyUserController{
+>>>>>>>> origin/pre-release:src/main/java/uv/mx/fei/gui/ModifyUserController.java
+>>>>>>> origin/pre-release
     @FXML
     private TextField usernameTextField;
     @FXML
@@ -30,17 +45,45 @@ public class ModifyUserController{
     private DatePicker expirationDatePicker;
     @FXML
     private DatePicker birthDatePicker;
+<<<<<<< HEAD
+=======
+<<<<<<<< HEAD:src/main/java/uv/mx/fei/gui/AddUserController.java
+    @FXML
+    private ComboBox<String> userTypeComboBox;
+    @FXML
+    private ComboBox<String> academicDegreeComboBox;
+    
+    public void initialize(){
+        academicDegreeComboBox.getItems().addAll("Licenciatura", "Maestría", "Doctorado");
+        userTypeComboBox.getItems().addAll("Administrador", "Administrativo", "Profesor");
+    }
+    
+========
+>>>>>>> origin/pre-release
     @FXML
     private ComboBox<String> academicDegreeComboBox;
     @FXML
     private ComboBox<String> userTypeComboBox;
     
+<<<<<<< HEAD
+<<<<<<<< HEAD:src/main/java/uv/mx/fei/gui/ModifyUserController.java
     @FXML
     public void initialize() {
+========
+    public void initialize(){
+>>>>>>>> origin/pre-release:src/main/java/uv/mx/fei/gui/AddUserController.java
+=======
+    @FXML
+    public void initialize() {
+>>>>>>> origin/pre-release
         academicDegreeComboBox.getItems().addAll("Licenciatura", "Maestría", "Doctorado");
-        userTypeComboBox.getItems().addAll("Administrador", "Profesor");
+        userTypeComboBox.getItems().addAll("Administrador", "Profesor","Administrativo");
     }
 
+<<<<<<< HEAD
+=======
+>>>>>>>> origin/pre-release:src/main/java/uv/mx/fei/gui/ModifyUserController.java
+>>>>>>> origin/pre-release
     @FXML
     private void saveChangesButtonClick(ActionEvent event) throws IOException{
         if(!areFieldsBlank()){
@@ -59,7 +102,15 @@ public class ModifyUserController{
                 try{
                     UsersDAO userDAO = new UsersDAO();
                     
+<<<<<<< HEAD
                     if(userDAO.modifyUser(user) > 0){
+=======
+<<<<<<<< HEAD:src/main/java/uv/mx/fei/gui/AddUserController.java
+                    if(userDAO.addUser(user) > 0){
+========
+                    if(userDAO.modifyUser(user) > 0){
+>>>>>>>> origin/pre-release:src/main/java/uv/mx/fei/gui/ModifyUserController.java
+>>>>>>> origin/pre-release
                         AlertPopUpGenerator.showCustomMessage(Alert.AlertType.INFORMATION, "Operación exitosa", "El nuevo usuario ha sido agregado exitosamente");
                         
                         MainApp.changeView("usermanagement-view.fxml");
@@ -116,17 +167,29 @@ public class ModifyUserController{
         boolean result = true;
         
         //Join date cannot go after expiration date
+<<<<<<< HEAD
         if(joinDatePicker.getValue().compareTo(expirationDatePicker.getValue()) > 0){
+=======
+        if(joinDatePicker.getValue().compareTo(expirationDatePicker.getValue()) < 0){
+>>>>>>> origin/pre-release
             result = false;
         }
         
         //Join or expiration date cannot go before birthDate
+<<<<<<< HEAD
         if(birthDatePicker.getValue().compareTo(joinDatePicker.getValue()) > 0 || birthDatePicker.getValue().compareTo(expirationDatePicker.getValue()) > 0){
+=======
+        if(birthDatePicker.getValue().compareTo(joinDatePicker.getValue())< 0 || birthDatePicker.getValue().compareTo(expirationDatePicker.getValue()) < 0){
+>>>>>>> origin/pre-release
             result = false;
         }
         
         //None of these dates can be in the future
+<<<<<<< HEAD
         if(birthDatePicker.getValue().compareTo(LocalDate.now()) > 0 || joinDatePicker.getValue().compareTo(LocalDate.now()) > 0 || expirationDatePicker.getValue().compareTo(LocalDate.now()) > 0){
+=======
+        if(birthDatePicker.getValue().compareTo(LocalDate.now()) < 0 || joinDatePicker.getValue().compareTo(LocalDate.now()) < 0 || expirationDatePicker.getValue().compareTo(LocalDate.now()) < 0){
+>>>>>>> origin/pre-release
             result = false;
         }
         
